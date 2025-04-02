@@ -3,7 +3,7 @@ pragma solidity ^0.8.20;
 
 import { Test, console2 } from "forge-std/Test.sol";
 import { UnsafeUpgrades } from "openzeppelin-foundry-upgrades/Upgrades.sol";
-import { OwnableUpgradeable, OwnableUnauthorizedAccount } from "lib/openzeppelin-contracts-upgradeable/contracts/access/OwnableUpgradeable.sol";
+import { OwnableUpgradeable } from "lib/openzeppelin-contracts-upgradeable/contracts/access/OwnableUpgradeable.sol"; // Error is defined inside
 
 import { MyTokenV1 } from "../src/MyTokenV1.sol";
 import { MyTokenV2 } from "../src/MyTokenV2.sol";
@@ -17,6 +17,9 @@ contract MyTokenUpgradeTest is Test {
 
     address internal owner;
     address internal nonOwner;
+
+    // Define the error locally to access its selector
+    error OwnableUnauthorizedAccount(address account);
 
     function setUp() public {
         owner = makeAddr("owner");
