@@ -82,7 +82,7 @@ contract MyTokenUpgradeTest is Test {
         assertEq(proxyV2.balanceOf(address(this)), 50 ether, "Balance should be reduced after burn");
     }
 
-    function testFail_Upgrade_WhenNotOwner() public {
+    function test_Revert_Upgrade_WhenNotOwner() public {
         // Prepare the expected revert data for OwnableUnauthorizedAccount error
         bytes memory expectedRevertData = abi.encodeWithSelector(
             OwnableUnauthorizedAccount.selector,
